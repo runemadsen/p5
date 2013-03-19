@@ -13,13 +13,7 @@ This gem does not ship with a version of xvfb, which is needed to run the gem. *
 Using Bundler:
 
 ```
-gem "p5"
-```
-
-Via rubygems:
-
-```
-gem install p5
+gem "p5", :git => "git://github.com/runemadsen/p5.git"
 ```
 
 ## Usage
