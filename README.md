@@ -26,7 +26,7 @@ gem install p5
 
 First create a new Processing sketch folder on your server. This example assumes that you have a folder called `test_sketch`, with a file called `test_sketch.pde` in it, which holds this content:
 
-```
+```java
 void setup()
 {
 	size(100, 100);
@@ -34,19 +34,18 @@ void setup()
 	saveFrame("grab.png");
 	exit();
 }
-
 ```
 
 From Ruby, you can now run the sketch via this gem:
 
-```
+```ruby
 sketch = P5::Sketch.new("#{File.dirname(__FILE__)}/test_sketch")
 sketch.run
 ```
 
 This will compile and run the file in the `build` subfolder of the sketch folder. If you're on a webserver where you can only write to `/tmp` or something like it, you can pass in an output folder, where the sketch will be compiled and run. The folder will automatically be created if it doesn't exist.
 
-```
+```ruby
 sketch = P5::Sketch.new("#{File.dirname(__FILE__)}/test_sketch", "/tmp/abuildfolder")
 sketch.run
 ```
