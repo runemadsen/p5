@@ -24,7 +24,7 @@ gem install p5
 
 ## Usage
 
-First create a new Processing sketch folder on your server. This example assumes that you have a folder called `test_sketch`, with a file called `test_sketch.pde` in it, which holds this content. You'll pass the name of the folder to P5, and it will automatically look for a `.pde` file inside of the folder of the same name.
+First create a new Processing sketch folder on your server. This example assumes that you have a folder called `test_sketch`, with a file called `test_sketch.pde` in it, which holds this content.
 
 ```java
 void setup()
@@ -36,14 +36,14 @@ void setup()
 }
 ```
 
-From Ruby, you can now run the sketch via this gem:
+From Ruby, you can now run the sketch via this gem. You'll pass the name of the folder to P5, and it will automatically look for a `.pde` file inside of the folder of the same name.
 
 ```ruby
 sketch = P5::Sketch.new("#{File.dirname(__FILE__)}/test_sketch")
 sketch.run
 ```
 
-This will compile and run the file in the `build` subfolder of the sketch folder. If you're on a webserver where you can only write to `/tmp` or something like it, you can pass in an output folder, where the sketch will be compiled and run. The folder will automatically be created if it doesn't exist.
+This will compile and run the file in the `build` subfolder of the sketch folder. If you're on a webserver where you can only write to `/tmp` or something like it, you can pass in an output folder, where the sketch will be compiled and executed. The folder will automatically be created if it doesn't exist.
 
 ```ruby
 sketch = P5::Sketch.new("#{File.dirname(__FILE__)}/test_sketch", "/tmp/abuildfolder")
@@ -58,12 +58,13 @@ get '/run' do
   sketch = P5::Sketch.new(folder)
   sketch.run
   file = File.join(folder, "grab.png")
-  S3Object.store(file, open(file), 'mybucket')
+  S3Object.store("grab.png", open(file), 'mybucket')
   File.delete(file)
+  "Get your image at http://mybucket.s3.amazonaws.com/grab.png"
 end
 ```
 
-Of course, you would probably put the actual Processing run code in a background job queue, but you get the idea.
+Of course, you would probably run the actual Processing run code in a background job, but you get the idea.
 
 So what can you use this for? For example, all of this: https://vimeo.com/61113159
 
