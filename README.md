@@ -24,7 +24,7 @@ gem install p5
 
 ## Usage
 
-First create a new Processing sketch folder on your server. This example assumes that you have a folder called `test_sketch`, with a file called `test_sketch.pde` in it, which holds this content:
+First create a new Processing sketch folder on your server. This example assumes that you have a folder called `test_sketch`, with a file called `test_sketch.pde` in it, which holds this content. You'll pass the name of the folder to P5, and it will automatically look for a `.pde` file inside of the folder of the same name.
 
 ```java
 void setup()
@@ -50,11 +50,39 @@ sketch = P5::Sketch.new("#{File.dirname(__FILE__)}/test_sketch", "/tmp/abuildfol
 sketch.run
 ```
 
+If you're using Processing to generate images, like in this example, it's up to you to grab the images and upload them somewhere (e.g. S3). It's also up to you to delete the image again. In Sinatra, that would look something like this:
+
+```ruby
+get '/run' do
+  folder = "#{File.dirname(__FILE__)}/test_sketch"
+  sketch = P5::Sketch.new(folder)
+  sketch.run
+  file = File.join(folder, "grab.png")
+  S3Object.store(file, open(file), 'mybucket')
+  File.delete(file)
+end
+```
+
+Of course, you would probably put the actual Processing run code in a background job queue, but you get the idea.
+
 So what can you use this for? For example, all of this: https://vimeo.com/61113159
 
 ## Development
 
-## Contributing
+If you want to hack on this, please feel free to add features! The gem ships with a puppet recipe and a Vagrantfile, so it's super easy to get going:
+
+```
+$ git clone git://github.com/runemadsen/p5.git
+$ cd p5
+$ gem install vagrant
+$ vagrant up
+$ vagrant ssh
+$ cd /vagrant
+$ rvm use 2.0.0
+$ rake test
+```
+
+If you want to contribute, please:
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
