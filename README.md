@@ -8,6 +8,20 @@ This gem ships with a full version of Processing, with all of the examples and U
 
 This gem does not ship with a version of xvfb, which is needed to run the gem. **You will need to install xvfb** in order to make this gem work. If you have a slice on Rackspace or something like this, it should be as easy as `apt-get install xvfb`. If you're on Heroku, [good luck](https://gist.github.com/atduskgreg/5100799).
 
+## Install
+
+Using Bundler:
+
+```
+gem "p5"
+```
+
+Via rubygems:
+
+```
+gem install p5
+```
+
 ## Usage
 
 First create a new Processing sketch folder on your server. This example assumes that you have a folder called `test_sketch`, with a file called `test_sketch.pde` in it, which holds this content:
