@@ -4,7 +4,9 @@ P5 is a ruby gem that makes it easy to run Processing sketches on a headless web
 
 ## What's in it, what's not
 
+This gem ships with a full version of Processing, with all of the examples and UI components removed. It currently amounts to 30mb.
 
+This gem does not ship with a version of xvfb, which is needed to run the gem. **You will need to install xvfb** in order to make this gem work. If you have a slice on Rackspace or something like this, it should be as easy as `apt-get install xvfb`. If you're on Heroku, [good luck](https://gist.github.com/atduskgreg/5100799).
 
 ## Usage
 
