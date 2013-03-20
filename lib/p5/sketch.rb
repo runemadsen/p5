@@ -9,7 +9,7 @@ module P5
 
 		def run
 			Headless.ly do
-  			`bin/processing/processing-java --sketch=#{@sketch_folder} --output=#{@output_folder} --force --run`
+  			`#{File.dirname(__FILE__)}/bin/processing/processing-java --sketch=#{@sketch_folder} --output=#{@output_folder} --force --run`
 			end
 		end
 
