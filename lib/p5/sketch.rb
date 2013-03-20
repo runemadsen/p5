@@ -9,8 +9,14 @@ module P5
 
 		def run
 			Headless.ly do
-  			`#{File.dirname(__FILE__)}/bin/processing/processing-java --sketch=#{@sketch_folder} --output=#{@output_folder} --force --run`
+  			`#{gem_root}/bin/processing/processing-java --sketch=#{@sketch_folder} --output=#{@output_folder} --force --run`
 			end
+		end
+
+		private
+
+		def gem_root
+			File.expand_path '../../..', __FILE__
 		end
 
 	end
