@@ -8,7 +8,6 @@ module P5
 		end
 
 		def run
-			puts @output_folder
   		Headless.ly do
   			`#{gem_root}/bin/processing/processing-java --sketch=#{@sketch_folder} --output=#{@output_folder} --force --run`
 			end

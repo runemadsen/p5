@@ -60,6 +60,8 @@ end
 
 Of course, you would probably run the actual Processing run code in a background job, but you get the idea.
 
+Keep in mind that if you save images from Processing (saveFrame, etc), they will always end up relative to the source folder. Use absolute paths to control where they go.
+
 So what can you use this for? For example, all of this: https://vimeo.com/61113159
 
 ## Development
