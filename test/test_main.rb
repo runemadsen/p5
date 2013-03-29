@@ -10,4 +10,9 @@ class MainTest < Test::Unit::TestCase
     File.delete("test/test_sketch/grab.png")
   end
 
+  def test_run_sketch_other_folder
+    sketch = P5::Sketch.new("#{File.dirname(__FILE__)}/test_sketch", "#{File.dirname(__FILE__)}/abuildfolder")
+    sketch.run
+  end
+
 end

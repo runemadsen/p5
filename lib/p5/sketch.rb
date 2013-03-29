@@ -4,11 +4,12 @@ module P5
 
 		def initialize(sketch_folder, output_folder = nil)
 			@sketch_folder = sketch_folder
-			@output_folder = File.join(sketch_folder, "build") if output_folder.nil?
+			@output_folder = output_folder || File.join(sketch_folder, "build")
 		end
 
 		def run
-			Headless.ly do
+			puts @output_folder
+  		Headless.ly do
   			`#{gem_root}/bin/processing/processing-java --sketch=#{@sketch_folder} --output=#{@output_folder} --force --run`
 			end
 		end
